@@ -39,7 +39,7 @@ public class Process extends JComponent implements ActionListener {
             try {
                 table = (TableOfRecords) ois.readObject();
             } catch (ClassNotFoundException ex) {
-            table = new TableOfRecords();            
+            table = new TableOfRecords();              
             }
         } catch (FileNotFoundException ex) {  
             System.err.println("Error: " + ex.getMessage());

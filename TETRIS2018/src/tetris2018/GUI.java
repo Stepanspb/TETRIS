@@ -28,40 +28,43 @@ public class GUI extends JFrame {
     boolean TimerRun = false;
     Font default_font = new Font("Impact", Font.ROMAN_BASELINE, 16);
     Font default_font2 = new Font("Arial", Font.ITALIC, 12);
-    
-        ActionListener timeraction =  new ActionListener() {
+
+    ActionListener timeraction = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-        if (TimerRun == false){
-        fig.start();
-        timer_driver.setText("STOP");
-        } else {
-        fig.stop();
-        timer_driver.setText("START");
-        }            
+            if (TimerRun == false) {
+                fig.start();
+                timer_driver.setText("STOP");
+            } else {
+                fig.stop();
+                timer_driver.setText("START");
+            }
         }
-    }; 
-        
-        ActionListener recordtable = new ActionListener() {
+    };
+
+    ActionListener recordtable = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-        JFrame recordsFrame = new JFrame("Records");
-        recordsFrame.setSize(500, 500);
-        recordsFrame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        recordsFrame.setVisible(true);
-        JPanel jp = new JPanel(new BorderLayout());
-        jp.setPreferredSize(new Dimension(500, 450));
-        jp.setBackground(Color.WHITE); 
-        JTable table =  new JTable(10, 2); 
-        table.setFont(default_font);
-        for (int i =0; i<10; i++){
-        table.setValueAt(i+1 , i, 0);        
-        } 
-        for (int i =0; i<fig.table.list.length; i++){
-        table.setValueAt(fig.table.list[i], i, 1);       
-        } 
-        jp.add(table);
-        recordsFrame.add(jp);
+            JFrame recordsFrame = new JFrame("Records");
+            recordsFrame.setSize(500, 500);
+            recordsFrame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+            recordsFrame.setVisible(true);
+            JPanel jp = new JPanel(new BorderLayout());
+            jp.setPreferredSize(new Dimension(500, 450));
+            jp.setBackground(Color.WHITE);
+            JTable table = new JTable(10, 3);
+            table.setFont(default_font);
+            for (int i = 0; i < 10; i++) {
+                table.setValueAt(i + 1, i, 0);
+            }
+            for (int i = 0; i < fig.table.list.length; i++) {
+                table.setValueAt(fig.table.list[i], i, 1);
+                if (fig.table.list[i] != null) {
+                    table.setValueAt(fig.table.list[i].getPoints(), i, 2);
+                }
+            }
+            jp.add(table);
+            recordsFrame.add(jp);
         }
     };
 

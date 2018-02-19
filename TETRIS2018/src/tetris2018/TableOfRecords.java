@@ -7,6 +7,6 @@ Records[] list;
 
     public TableOfRecords() {
         list = new Records[10];
-    }
+            }
 
 }

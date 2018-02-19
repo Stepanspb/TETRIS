@@ -15,6 +15,16 @@ String nickname;
 
     @Override
     public String toString() {
-    return nickname + ":" + "         Points "+ points + ".";   
+    return nickname + ":";   
     }
+    
+    
+    String getPoints(){
+    return String.valueOf(points);
+    }
+    
+//     @Override
+//    public String toString() {
+//    return nickname + ":" + "         Points "+ points + ".";   
+//    }
 }
