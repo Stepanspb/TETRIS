@@ -8,6 +8,9 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumnModel;
 
 public class GUI extends JFrame {
 
@@ -52,17 +55,20 @@ public class GUI extends JFrame {
             JPanel jp = new JPanel(new BorderLayout());
             jp.setPreferredSize(new Dimension(500, 450));
             jp.setBackground(Color.WHITE);
-            JTable table = new JTable(10, 3);
+            JTable table = new JTable(11, 3);             
             table.setFont(default_font);
-            for (int i = 0; i < 10; i++) {
-                table.setValueAt(i + 1, i, 0);
+            table.setValueAt("№", 0, 0);
+            table.setValueAt("Name", 0, 1);
+            table.setValueAt("Points", 0, 2);
+            for (int i = 1; i < 11; i++) {
+                table.setValueAt(i, i, 0);
             }
             for (int i = 0; i < fig.table.list.length; i++) {
-                table.setValueAt(fig.table.list[i], i, 1);
+                table.setValueAt(fig.table.list[i], i+1, 1);
                 if (fig.table.list[i] != null) {
-                    table.setValueAt(fig.table.list[i].getPoints(), i, 2);
+                    table.setValueAt(fig.table.list[i].getPoints(), i+1, 2);
                 }
-            }
+            }         
             jp.add(table);
             recordsFrame.add(jp);
         }

@@ -42,8 +42,10 @@ public class Process extends JComponent implements ActionListener {
             table = new TableOfRecords();              
             }
         } catch (FileNotFoundException ex) {  
+            table = new TableOfRecords();
             System.err.println("Error: " + ex.getMessage());
-        } catch (IOException ex) {              
+        } catch (IOException ex) {
+            table = new TableOfRecords();
          System.err.println("Error: " + ex.getMessage());
         }
     }
@@ -573,22 +575,7 @@ public class Process extends JComponent implements ActionListener {
         if (down_is_posible() == false) {
             if (fig.brick_1[0][1] < 4 || fig.brick_2[0][1] < 4 || fig.brick_3[0][1] < 4 || fig.brick_4[0][1] < 4) {
                 System.out.println("game over");
-                timer.stop();                
-                try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("TABLE OF POINT"))) {
-                    try {
-                        table = (TableOfRecords) ois.readObject();
-                    } catch (IOException ex) {
-                        table = new TableOfRecords();
-                        System.out.println("Error  " + ex.getMessage());
-                    } catch (ClassNotFoundException ex) {
-                        System.out.println("Error  " + ex.getMessage());;
-                    }
-                } catch (IOException ex) {                  
-                   try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("TABLE OF POINT"))) {
-                    records();
-                    oos.writeObject(table);
-                }  
-                }
+                timer.stop();        
                 try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("TABLE OF POINT"))) {
                     records();
                     oos.writeObject(table);
@@ -603,14 +590,14 @@ public class Process extends JComponent implements ActionListener {
             for (int i = 0; i < table.list.length; i++) {
                 if (table.list[i] == null) {
                 record = true;
-                    String nick = JOptionPane.showInputDialog(gui, "Enter your name", "NEW RECORD!", JOptionPane.INFORMATION_MESSAGE);
+                    String nick = JOptionPane.showInputDialog(gui, "Enter your name", "NEW RECORD! 1", JOptionPane.INFORMATION_MESSAGE);
                     Records newrecord = new Records(nick, points);                    
                     table.list[i] = newrecord;
                     break;
                 }
                 if (points > table.list[i].points) {
                     record = true;
-                    String nick = JOptionPane.showInputDialog(gui, "Enter your name", "NEW RECORD!", JOptionPane.INFORMATION_MESSAGE);
+                    String nick = JOptionPane.showInputDialog(gui, "Enter your name", "NEW RECORD! 2", JOptionPane.INFORMATION_MESSAGE);
                     Records newrecord = new Records(nick, points);
                     for (int j = table.list.length - 1; j > i; j--) {
                         table.list[j] = table.list[j - 1];
