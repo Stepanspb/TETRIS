@@ -590,14 +590,14 @@ public class Process extends JComponent implements ActionListener {
             for (int i = 0; i < table.list.length; i++) {
                 if (table.list[i] == null) {
                 record = true;
-                    String nick = JOptionPane.showInputDialog(gui, "Enter your name", "NEW RECORD! 1", JOptionPane.INFORMATION_MESSAGE);
+                    String nick = JOptionPane.showInputDialog(gui, "Enter your name", "NEW RECORD! ", JOptionPane.INFORMATION_MESSAGE);
                     Records newrecord = new Records(nick, points);                    
                     table.list[i] = newrecord;
                     break;
                 }
                 if (points > table.list[i].points) {
                     record = true;
-                    String nick = JOptionPane.showInputDialog(gui, "Enter your name", "NEW RECORD! 2", JOptionPane.INFORMATION_MESSAGE);
+                    String nick = JOptionPane.showInputDialog(gui, "Enter your name", "NEW RECORD! ", JOptionPane.INFORMATION_MESSAGE);
                     Records newrecord = new Records(nick, points);
                     for (int j = table.list.length - 1; j > i; j--) {
                         table.list[j] = table.list[j - 1];
