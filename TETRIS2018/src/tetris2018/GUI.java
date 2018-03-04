@@ -8,9 +8,6 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.JTableHeader;
-import javax.swing.table.TableColumnModel;
 
 public class GUI extends JFrame {
 
@@ -18,7 +15,7 @@ public class GUI extends JFrame {
     int count_x = 12;
     int count_y = 20;
     int ORIGIN_POSITION_X = 5,
-    ORIGIN_POSITION_Y = 0; 
+            ORIGIN_POSITION_Y = 0;
     JFrame frame;
     JPanel field = new JPanel(new BorderLayout());
     JPanel nextfig = new JPanel(new BorderLayout());
@@ -49,13 +46,14 @@ public class GUI extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             JFrame recordsFrame = new JFrame("Records");
-            recordsFrame.setSize(500, 500);
+            recordsFrame.setResizable(false);
+            recordsFrame.setSize(500, 205);
             recordsFrame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
             recordsFrame.setVisible(true);
             JPanel jp = new JPanel(new BorderLayout());
             jp.setPreferredSize(new Dimension(500, 450));
             jp.setBackground(Color.WHITE);
-            JTable table = new JTable(11, 3);             
+            JTable table = new JTable(11, 3);
             table.setFont(default_font);
             table.setValueAt("№", 0, 0);
             table.setValueAt("Name", 0, 1);
@@ -64,22 +62,20 @@ public class GUI extends JFrame {
                 table.setValueAt(i, i, 0);
             }
             for (int i = 0; i < fig.table.list.length; i++) {
-                table.setValueAt(fig.table.list[i], i+1, 1);
+                table.setValueAt(fig.table.list[i], i + 1, 1);
                 if (fig.table.list[i] != null) {
-                    table.setValueAt(fig.table.list[i].getPoints(), i+1, 2);
+                    table.setValueAt(fig.table.list[i].getPoints(), i + 1, 2);
                 }
-            }         
+            }
             jp.add(table);
             recordsFrame.add(jp);
         }
     };
 
-    
-    void setfig(Process fig){
-    this.fig = fig;
+    void setfig(Process fig) {
+        this.fig = fig;
     }
-    
-    
+
     public GUI() {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -96,17 +92,17 @@ public class GUI extends JFrame {
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         frame.setSize(new Dimension(550, 630));
         frame.setResizable(false);
-        JPanel game_field = new JPanel( new BorderLayout());
-        game_field.setSize(new Dimension(550, 620));     
-        game_field.setBackground(Color.LIGHT_GRAY.darker());        
+        JPanel game_field = new JPanel(new BorderLayout());
+        game_field.setSize(new Dimension(550, 620));
+        game_field.setBackground(Color.LIGHT_GRAY.darker());
         menu = new JPanel();
         menu.setPreferredSize(new Dimension(180, 600));
         menu.setBackground(Color.LIGHT_GRAY);
         menu.setBorder(BorderFactory.createLineBorder(Color.black));
-        point =  new JLabel();
+        point = new JLabel();
 //        point.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
         point.setPreferredSize(new Dimension(100, 50));
-        String p  = new String("Point: " +String.valueOf(Process.points));
+        String p = new String("Point: " + String.valueOf(Process.points));
         point.setText(p);
         point.setFont(default_font);
         menu.add(point);
@@ -120,7 +116,7 @@ public class GUI extends JFrame {
         field.setBorder(BorderFactory.createLineBorder(Color.black));
         nextfig.setPreferredSize(new Dimension(100, 100));
         nextfig.setBackground(Color.white);
-        nextfig.setBorder(BorderFactory.createLineBorder(Color.black, 1));  
+        nextfig.setBorder(BorderFactory.createLineBorder(Color.black, 1));
         menu.add(nextfig);
         fignext = new NextFig();
         nextfig.add(fignext);
@@ -136,7 +132,7 @@ public class GUI extends JFrame {
         recordShow.setFocusable(false);
         menu.add(timer_driver);
         menu.add(recordShow);
-        Dimension dim =new Dimension(150, 20);
+        Dimension dim = new Dimension(150, 20);
         JLabel howtoplay1 = new JLabel("              CONTROL :");
         howtoplay1.setFont(default_font);
         howtoplay1.setPreferredSize(dim);
@@ -147,11 +143,11 @@ public class GUI extends JFrame {
         howtoplay3.setFont(default_font2);
         howtoplay3.setPreferredSize(dim);
         menu.add(howtoplay1);
-         menu.add(howtoplay2);
-         menu.add(howtoplay3);
+        menu.add(howtoplay2);
+        menu.add(howtoplay3);
         game_field.add(field, BorderLayout.WEST);
-        game_field.add(menu, BorderLayout.EAST);        
-        frame.add(game_field);       
+        game_field.add(menu, BorderLayout.EAST);
+        frame.add(game_field);
         frame.setVisible(true);
     }
 
@@ -160,35 +156,31 @@ public class GUI extends JFrame {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-                         fig.moveleft();
-                         fig.clearposition_left();
-                         fig.checkposition();
-                         fig.repaint();               
+                    fig.moveleft();
+                    fig.clearposition_left();
+                    fig.checkposition();
+                    fig.repaint();
                 }
                 if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-                          fig.moveright();
-                          fig.clearposition_right();
-                          fig.checkposition();
-                          fig.repaint();                   
+                    fig.moveright();
+                    fig.clearposition_right();
+                    fig.checkposition();
+                    fig.repaint();
                 }
                 if (e.getKeyCode() == KeyEvent.VK_DOWN) {
                     fig.movedown();
                     fig.clearposition_down();
                     fig.checkposition();
-                    fig.repaint();    
-                                   
+                    fig.repaint();
+
                 }
                 if (e.getKeyCode() == KeyEvent.VK_SPACE) {
                     fig.rotate(fig.getrand());
                     fig.checkposition();
-                    fig.repaint();                 
+                    fig.repaint();
                 }
 
             }
         });
     }
-
-    
-    
-
-    }
+}

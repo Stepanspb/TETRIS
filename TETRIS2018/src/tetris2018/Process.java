@@ -627,5 +627,4 @@ public class Process extends JComponent implements ActionListener {
             }
         }
     }
-
 }

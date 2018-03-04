@@ -37,6 +37,16 @@ Graphics2D g2d;
             g2d.fillRect(40, 50, 20, 20);
             break;            
             }
+             case 5: {
+            g2d.fillRect(55, 20, 20, 60);
+            g2d.fillRect(35, 20, 20, 20);
+            break;            
+            }
+              case 6: {
+            g2d.fillRect(50, 40, 20, 40);
+            g2d.fillRect(30, 20, 20, 40);
+            break;                       
+            }
         
         }
     }
